@@ -67,6 +67,9 @@
      font-size: 18px;
      color: #2874f0;
  }
+
+
+
  .header-right{
      width: 40%;
      font-size: 15px;
@@ -88,7 +91,7 @@
      width: 130px;
      line-height: 23px;
      margin-top: 8px;
-     border-radius: 2px;
+     border-radius: 8px;
      text-align: center;
  }
  .fa-shopping-cart{
