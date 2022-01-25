@@ -1,3 +1,4 @@
+<?php include('server.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,30 +11,31 @@
 <body>
    <span> <a href="./index.html"><img id="back" src="back image.jpg" alt=""></a></span>
     <div class="signupFrm">
-        <form action="" class="form">
+        <form action="server.php" class="form">
+        <?php include('error.php') ?>
+
           <h1 class="title">Sign Up</h1>
     
           <div class="inputContainer">
-            <input type="text" class="input" placeholder="a" name="email" >
+            <input type="text" class="input" placeholder="a" required name="email" >
             <label for="" class="label">Email</label>
           </div>
     
           <div class="inputContainer">
-            <input type="text" class="input" placeholder="a" name="username" >  
+            <input type="text" class="input" placeholder="a" required name="username" >
             <label for="" class="label">Username</label>
           </div>
     
           <div class="inputContainer">
-            <input type="text" class="input" placeholder="a"  name="password_1" >
+            <input type="text" class="input" placeholder="a" required name="password_1" >
             <label for="" class="label">Password</label>
           </div>
     
           <div class="inputContainer">
-            <input type="text" class="input" placeholder="a" name="password_2" >
+            <input type="text" class="input" placeholder="a" required name="password_2" >
             <label for="" class="label">Confirm Password</label>
-          
-    
-          <input type="submit" class="submitBtn" value="Sign up">
+          </div>
+    Already a member?  <a href="login.php">Login</a>        <input type="submit" class="submitBtn" name="Signup" value="Sign up">
         </form>
       </div>
 </body>
