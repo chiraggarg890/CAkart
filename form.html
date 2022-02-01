@@ -1,43 +1,211 @@
+
+
+
+
+<style>body
+  {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background: url(college.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+background: radial-gradient(#91e5c2,#2874f0);
+
+  }
+  .container
+  {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 700px;
+      background: #fff;
+      padding: 45px;
+      box-sizing: border-box;
+      border :1px solid rgba(0,0,0,.1);
+      box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  }
+  .container h1
+  {
+      text-align: center;
+      margin: 0 0 40px;
+      padding: 0;
+      color: rgb(66,133,244);
+      letter-spacing: 2px;
+  }
+  .container input
+  {
+      padding: 5px;
+      margin-bottom: 30px;
+      /* margin-left: 30px; */
+      width: 55%;
+      box-sizing: border-box;
+      box-shadow: none;
+      outline: none;
+      border:none;
+      border-bottom: 2px solid #999;
+  }
+  .container button[type="submit"]
+  {
+      border-radius: 25px;
+      font-size: 20px;
+      height: 40px;
+      border-color: none;
+      
+       text-decoration: none;
+      width: 30%;
+      cursor : pointer;
+      background: rgb(66,133,244);
+      color: #fff;
+      margin-bottom: 0;
+  }
+  .container button[type="submit"]:hover
+  {
+      background: rgb(110 145 202);
+      color: #fff;
+  }
+  .container form div
+  {
+      position: relative;
+  }
+  .container form div label
+  {
+      position: absolute;
+      top: 3px;
+      pointer-events: none;
+      left: 0;
+      transition: .5s;
+  }
+  .container input:focus ~label,
+  .container input:valid ~label
+  {
+      left: 0;
+      top: -20px;
+      color: rgb(66,133,244);
+      font-size: 12px;
+      font-weight: bold;
+  }
+  .container input:focus,
+  .container input:valid
+  {
+      border-bottom: 2px solid rgb(66,133,244);
+  }
+  .error_form
+  {
+      top: 12px;
+      color: rgb(216, 15, 15);
+      font-size: 13px;
+      font-family: Helvetica;
+  }
+  
+  </style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="formstyle.css">
-    <title>Login Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Login</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 </head>
 <body>
-   <span> <a href="https://chiraggarg890.github.io/CAkart/"><img id="back" src="back image.jpg" alt=""></a></span>
-    <div class="signupFrm">
-        <form action="" class="form" name="reg_form">
-          <h1 class="title"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Login</h1>
+<div class="container">
+  <h1>Login</h1>
+  
+  <form action="login.php" method="post" id="registration_form">
+    <div style=" margin-left:190px">
+      <input type="text" id="form_fname" name="username" required="">
+      <span class="error_form" id="fname_error_message"></span>
+      <label>
+        Username
+      </label>	
+    </div>
     
-          <!-- <div class="inputContainer">
-            <input type="text" class="input" placeholder="a">
-            <label for="" class="label">Email</label>
-          </div> -->
+   
+    <div style=" margin-left:190px">
+      <input type="password" id="form_password" name="" required="">
+      <span class="error_form" id="password_error_message"></span>
+      <label>Password</label>	
+    </div>
     
-          <div class="inputContainer">
-            <input type="text" class="input" placeholder="a" name="username" >
-            <label for="" class="label">Username</label>
-          </div>
-    
-          <div class="inputContainer">
-            <input type="text" class="input" placeholder="a" name="pass">
-            <label for="" class="label">Password</label>
-          </div>
-    
-          <!-- <div class="inputContainer">
-            <input type="text" class="input" placeholder="a">
-            <label for="" class="label">Confirm Password</label>
-          </div> -->
-          <div class="signup_link">
-            Not a member? <a href="signup.html">Signup</a>
-          </div>
-          <input type="submit" class="submitBtn" value="Submit" onclick="validate()" >
-        </form>
-      </div>
+    <button style=" margin-left:206px" type="submit" value="Register" name="">login</button>
+  </form>
+</div>
+<script type="text/javascript">
+    $(function() {
+
+       $("#fname_error_message").hide();
+       $("#sname_error_message").hide();
+       $("#email_error_message").hide();
+       $("#password_error_message").hide();
+       $("#retype_password_error_message").hide();
+
+       var error_fname = false;
+       var error_password = false;
+
+       $("#form_fname").focusout(function(){
+          check_fname();
+       });
+       
+       
+       $("#form_password").focusout(function() {
+          check_password();
+       });
+     
+
+       function check_fname() {
+          var pattern = /^[a-zA-Z]*$/;
+          var fname = $("#form_fname").val();
+          if (pattern.test(fname) && fname !== '') {
+             $("#fname_error_message").hide();
+             $("#form_fname").css("border-bottom","2px solid #34F458");
+          } else {
+             $("#fname_error_message").html("Should contain only Characters");
+             $("#fname_error_message").show();
+             $("#form_fname").css("border-bottom","2px solid #F90A0A");
+             error_fname = true;
+          }
+       }
+
+     
+
+       function check_password() {
+          var password_length = $("#form_password").val().length;
+          if (password_length < 8) {
+             $("#password_error_message").html("Atleast 8 Characters");
+             $("#password_error_message").show();
+             $("#form_password").css("border-bottom","2px solid #F90A0A");
+             error_password = true;
+          } else {
+             $("#password_error_message").hide();
+             $("#form_password").css("border-bottom","2px solid #34F458");
+          }
+       }
+
+       
+
+       
+
+       $("#registration_form").submit(function() {
+          error_fname = false;
+          error_password = false;
+
+          check_fname();
+          check_password();
+
+          if (error_fname === false   && error_password === false  ) {
+            //  alert("Registration Successfull");
+             return true;
+          } else {
+             alert("Please Fill the form Correctly");
+             return false;
+          }
+
+
+       });
+    });
+ </script>
 </body>
 </html>
-<script src="form.js"></script>
